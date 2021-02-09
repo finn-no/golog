@@ -8,17 +8,10 @@ import (
 )
 
 // Logger will be used by other packages to print log entries.
-var logger = logrus.New()
+var logger *logrus.Logger
 
-// Init sets Finn-specific log formatting.
-func Init(levelStr string) error {
-	lvl, err := logrus.ParseLevel(levelStr)
-	if err != nil {
-		return err
-	}
-
-	logger.Level = lvl
-
+func init() {
+	logger = logrus.New()
 	if os.Getenv("FIAAS_ENVIRONMENT") != "" {
 		logger.SetReportCaller(true)
 		logger.Out = os.Stdout
@@ -33,6 +26,15 @@ func Init(levelStr string) error {
 			},
 		}
 	}
+}
+
+// SetLevel sets the log level for the logger.
+func SetLevel(levelStr string) error {
+	lvl, err := logrus.ParseLevel(levelStr)
+	if err != nil {
+		return err
+	}
+	logger.Level = lvl
 	return nil
 }
 
