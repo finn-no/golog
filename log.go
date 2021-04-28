@@ -28,6 +28,10 @@ func init() {
 	}
 }
 
+func Logger() *logrus.Logger {
+	return logger
+}
+
 // SetLevel sets the log level for the logger.
 func SetLevel(levelStr string) error {
 	lvl, err := logrus.ParseLevel(levelStr)

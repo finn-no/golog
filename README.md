@@ -29,3 +29,13 @@ if err := log.SetLevel("debugg"); err != nil {
     log.Fatalf("setting logging level: %v", err)
 }
 ```
+
+## Using the logger
+When you call `golog.Info("some message")`, the message's calling file will be
+from the `golog` package itself, rather than the actual calling file. This
+behaviour can be mitigated by using the logger directly:
+```
+logger := log.Logger()
+logger.Info("hello, golog!")
+```
+This is the same `logrus.Logger` used by golog internally.
