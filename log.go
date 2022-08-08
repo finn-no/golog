@@ -22,7 +22,6 @@ func init() {
 				logrus.FieldKeyLevel: "level",
 				logrus.FieldKeyMsg:   "message",
 				logrus.FieldKeyFunc:  "caller",
-				"@version":           "1", // apparently this is required on fiaas logs
 			},
 		}
 	}
